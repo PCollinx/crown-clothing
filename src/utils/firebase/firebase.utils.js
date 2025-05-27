@@ -1,0 +1,60 @@
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  signInWithRedirect,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
+
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCZJKQP1Z8z2vhmflblTjmS1J3I3fDdNbs",
+  authDomain: "crown-clothing-db-19301.firebaseapp.com",
+  projectId: "crown-clothing-db-19301",
+  storageBucket: "crown-clothing-db-19301.firebasestorage.app",
+  messagingSenderId: "453433945294",
+  appId: "1:453433945294:web:f994549ab44ec63f6ab49f",
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  prompt: "select_account",
+});
+
+export const auth = getAuth();
+export const signinwithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const db = getFirestore();
+
+export const createUserDocumentFromAuth = async (userAuth) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  const userSnapShop = await getDoc(userDocRef);
+
+  // if user data does not exist, create/set the document with the data from userAuth in my collection
+
+  if (!userSnapShop.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+      });
+    } catch (error) {
+      console.log("error creating the user", error.message);
+    }
+  }
+
+  // if user data exist
+  return userDocRef;
+
+  // return userDocRef;
+};
