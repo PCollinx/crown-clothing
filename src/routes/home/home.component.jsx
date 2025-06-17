@@ -32,10 +32,10 @@ const Home = () => {
   ];
 
   return (
-    <>
-      <Outlet />
+    <div>
       <Directory categories={categories} />
-    </>
+      <Outlet />
+    </div>
   );
 };
 
