@@ -7,6 +7,11 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.6.1",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@types/redux-logger": "^3.0.13",
     "firebase": "^11.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -21,6 +26,8 @@
     "reselect": "^5.1.1",
     "sass": "^1.89.0",
     "styled-components": "^6.1.19",
+    "typed-redux-saga": "^1.5.0",
+    "typescript": "^5.9.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -46,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-macros": "^3.1.0"
   }
 }
